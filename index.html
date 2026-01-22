@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VESPER PRO - Global</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="auth-overlay">
+    <h1 id="auth-title">VESPER</h1>
+    <p id="auth-subtitle">SECURE NETWORK</p>
+    <input type="text" id="my-name" placeholder="Nickname">
+    <input type="text" id="my-phone" placeholder="Phone ID">
+    <button id="btn-login" onclick="auth.login()">ENTER VAULT</button>
+</div>
+
+<div class="app-container">
+    <div class="header">
+        <div class="logo" id="app-logo">VESPER</div>
+        <div class="p-badge">PRO</div>
+    </div>
+
+    <div class="nav-tabs">
+        <div class="tab active" id="tab-c" onclick="ui.switchTab('contacts')">CONTACTS</div>
+        <div class="tab" id="tab-m" onclick="ui.switchTab('chats')">MESSAGES</div>
+        <div class="tab" id="tab-s" onclick="ui.switchTab('settings')">PROFILE</div>
+    </div>
+
+    <div id="contacts" class="screen active">
+        <input type="text" id="target-phone" placeholder="Partner ID">
+        <input type="password" id="vault-key" placeholder="Encryption Key">
+        <button id="btn-connect" onclick="chat.connect()">CONNECT</button>
+    </div>
+
+    <div id="chats" class="screen">
+        <div id="messages"></div>
+        <div class="input-bar">
+            <select id="burn-timer"><option value="0">∞</option><option value="10000">10s</option></select>
+            <input type="text" id="msg-input" placeholder="Text...">
+            <button onclick="chat.send()">OK</button>
+        </div>
+    </div>
+
+    <div id="settings" class="screen">
+        <h3 id="txt-settings">Settings</h3>
+        <p id="txt-lang-label" style="font-size:12px; color:var(--gold)">Choose Language:</p>
+        <select id="lang-select" onchange="ui.changeLang(this.value)">
+            <option value="en">English (Vesper)</option>
+            <option value="sr">Srpski (Trezor)</option>
+            <option value="de">Deutsch (Tresor)</option>
+            <option value="ru">Pусский (Сейф)</option>
+            <option value="ja">日本語 (金庫)</option>
+            <option value="zh">中文 (金库)</option>
+        </select>
+        <button id="btn-logout" onclick="location.reload()" style="margin-top:20px; background:#222; color:white;">LOGOUT</button>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+<script src="config.js"></script>
+<script src="ui.js"></script>
+<script src="auth.js"></script>
+<script src="chat.js"></script>
+</body>
+</html>
